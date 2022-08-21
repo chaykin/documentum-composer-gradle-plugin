@@ -1,0 +1,31 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_8
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+gradlePlugin {
+    plugins {
+        documentumComposerPlugin {
+            id = 'ru.opentext.documentum-composer'
+            implementationClass = 'ru.opentext.gradle.DocumentumComposerPlugin'
+        }
+    }
+}
+
+// publish to local maven repo for testing
+publishing {
+    repositories {
+        maven {
+            url "${buildDir}/maven-repo"
+        }
+    }
+}
+
+dependencies {
+    implementation 'commons-io:commons-io:2.11.0'
+}

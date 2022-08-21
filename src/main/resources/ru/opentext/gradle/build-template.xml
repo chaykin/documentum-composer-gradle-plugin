@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project name="DarBuild" default="package-project">
+    <property name="dar.output.dir" value="#DAR.OUTPUT.DIR#" />
+
+    <macrodef name="importDocapp">
+        <attribute name="name" />
+        <sequential>
+            <emc.importProject dmproject="@{name}" failonerror="true" />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="make">
+        <attribute name="name" />
+        <sequential>
+            <emc.build dmproject="@{name}" failonerror="true" />
+            <delete file="@{name}.dar" />
+            <delete file="${dar.output.dir}/@{name}.dar" />
+            <emc.dar dmproject="@{name}" manifest="bin/dar/default.dardef.artifact" dar="${dar.output.dir}/@{name}.dar" />
+        </sequential>
+    </macrodef>
+
+    <target name="package-project">
+        #DARS-START#<importDocapp name="#NAME#" />#DARS-END#
+        #DARS-START#<make name="#NAME#"/>#DARS-END#
+    </target>
+</project>
