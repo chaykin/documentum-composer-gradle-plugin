@@ -5,13 +5,12 @@ Gradle plugin for build Dar files using Documentum Composer.
 Plugin requires Documentum Composer headless distributive uploaded in Your enterprise repository as zip-artifact.
 
 ## Using
-
 Add plugin to Your `build.gradle` file:
 
 ```
 plugins {
     ...
-    id 'ru.opentext.gradle.documentum-composer'
+    id "ru.opentext.documentum-composer" version "1.0"
 }
 ```
 
